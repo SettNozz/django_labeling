@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Classes</title>
+    <link href="/static/css/start.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+    <div id="header">
+User classes
+    </div>
+	<div>
+<center>
+  <p> All our classes is:</p>
+    {% for item in class_link %}
+   <img src={{item}} width=200 height=200>
+   {% endfor %}
+</center>
+	</div>
+</body>
+</html>
