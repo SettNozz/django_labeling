@@ -9,15 +9,18 @@ def index(request):
     html = open("myapp/templates/start.html").read()
     template = Template(html)
     cursor = connection.cursor()
-    sql_request = "SELECT DISTINCT submissions.picture FROM submissions WHERE submissions.description != 'water';"
+    sql_request = "SELECT DISTINCT submissions.picture, submissions.description from submissions WHERE submissions.picture != '' AND submissions.picture != 'Empty' AND submissions.picture != 'water' AND submissions.description != '';"
     cursor.execute(sql_request)
-    b = cursor.fetchmany(94                                                                                                                                     )
-    c = []
-    for i in b:
-        c.append(str(''.join(i)))
-    context = {'class_link': c}
+    b = cursor.fetchall()
+    # c = []
+    # for i in b:
+    #     c.append(str(''.join(i)))
+    context = {'class_link': b}
     data = template.render(context)
     with open("myapp/templates/final_file.html", "wb") as fh:
         fh.write(data.encode())
     tp = "final_file.html"
     return render_to_response(tp)
+
+# def home(request):
+#     return render_to_response("final_file.html")

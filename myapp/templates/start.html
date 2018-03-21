@@ -11,9 +11,22 @@ User classes
     </div>
 	<div>
 <center>
-  <p> All our classes is:</p>
+  <p> All of our new classes is:</p>
+    <style>
+    #imagewithcaption {
+    {#float:left;#}
+    width: 300px;
+    text-align:center;
+    }
+    #image {
+    height: auto;
+    width: auto;
+    max-width: 300px;
+    max-height: 300px;
+    }
+    </style>
     {% for item in class_link %}
-   <img src={{item}} width=200 height=200>
+   <p id=imagewithcaption><img id="image" src={{item[0]}} width=300 height=300/> {{item[1]}}</p>
    {% endfor %}
 </center>
 	</div>
