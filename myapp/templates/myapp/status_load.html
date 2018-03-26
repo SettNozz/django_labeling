@@ -1,0 +1,39 @@
+<!-- chat/templates/chat/room.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>Chat Room</title>
+</head>
+<body>
+        <center><textarea id="status-bar" cols="100" rows="20"></textarea><br/></center>
+        <center><input id="start-download" type="button" value="Start download"/></center>>
+        <center><a href="http://127.0.0.1:8000/myapp">To all classes</a></center>>
+</body>
+<script>
+    var className = {{ class_name_json }};
+    var b = 'thumbnails-generate'
+    var chatSocket = new WebSocket(
+        {#className#}
+        'ws://' + window.location.host +
+        '/ws/myapp/loaders/' + b + '/'
+    );
+
+    chatSocket.onmessage = function(e) {
+        var data = JSON.parse(e.data);
+        var message = data['message'];
+        document.querySelector('#status-bar').value += (message + '\n');
+    };
+
+    chatSocket.onclose = function(e) {
+        console.error('Chat socket closed unexpectedly');
+    };
+
+    document.querySelector('#start-download').onclick = function(e) {
+        var message = className;
+        chatSocket.send(JSON.stringify({
+            'message': message
+        }));
+    };
+</script>
+</html>

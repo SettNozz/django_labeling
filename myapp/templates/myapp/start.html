@@ -26,9 +26,19 @@ User classes
     }
     </style>
     {% for item in class_link %}
-   <p id=imagewithcaption><img id="image" src={{ item.0 }} width=300 height=300/><a href="loaders?a={{ item.1 }}">{{ item.1 }}<a></p>
+   <p id=imagewithcaption><img id="image" src={{ item.0 }} width=300 height=300/><button onclick="myFunc('{{ item.1 }}')">{{ item.1 }}</button></p>
    {% endfor %}
 </center>
 	</div>
 </body>
+<script>
+
+        function myFunc(class_name) {
+            {#var a = 'thumbnails-generate'#}
+            window.location.pathname = '/myapp/loaders/'  + class_name;
+        };
+        {#document.querySelector('#loa').onclick = function(e) {#}
+        {#var className = document.querySelector('#loa').valueOf();#}
+        {#window.location.pathname = '/chat/' + roomName;#}
+    </script>
 </html>
